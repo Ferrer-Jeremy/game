@@ -1,0 +1,17 @@
+[
+  {
+    "id": 0,
+    "name": "plaine",
+    "image": "tiles/plaine.png"
+  },
+  {
+    "id": 1,
+    "name": "sea",
+    "image": "tiles/sea.png"
+  },
+  {
+    "id": 2,
+    "name": "fire",
+    "image": "tiles/fire.png"
+  }
+]

@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+    application:
+        build: application/.
+        volumes:
+            - "../:/var/www:rw,cached"
+            - "/tmp/.X11-unix:/tmp/.X11-unix" # To show the display
+        environment:
+            - PYTHONUNBUFFERED=0 # for showing stdout in real time
+            - DISPLAY=$DISPLAY # To show the display
+#        links:
+#            - mysql_crawler
+
+# https://hub.docker.com/r/prima/filebeat/
+#    filebeat:
+#        image: prima/filebeat
+#        volumes:
+#            - "./filebeat/filebeat.yml:/filebeat.yml"
+#            - "../logs:/var/log:ro"
+#        links:
+#            - elk
+
+# https://hub.docker.com/r/sebp/elk/
+#    elk:
+#        image: sebp/elk
+#        volumes:
+#            - "./elk/logstash/conf.d:/etc/logstash/conf.d"
+#            - "./data/elasticsearch/:/var/lib/elasticsearch/:rw"
+##            - "./log/elk/:/var/log/:ro"
+#        ports:
+#            - "5601:5601"
+#            - "9200:9200"
+#            - "5044:5044"
+
+#    mysql_crawler:
+#        image: mysql:5.7
+#        restart: always
+#        ports:
+#            - "3306:3306"
+#        volumes:
+#            - "./data/mysql/:/var/lib/mysql/"
+##            - "./docker/log/mysql/:/var/log/mysql/:ro"
+#        environment:
+#            MYSQL_USER: "user"
+#            MYSQL_PASSWORD: "user"
+#            MYSQL_DATABASE: crawler
+#            MYSQL_ROOT_PASSWORD: "root"

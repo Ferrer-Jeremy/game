@@ -1,0 +1,25 @@
+### Engine
+pygame
+
+### Http
+requests==2.*
+
+#########################     Tests     #########################
+
+### For Code Style Check
+pylint
+
+### Test unitaires
+pytest
+
+######################### Documentation #########################
+
+### Documentation
+Sphinx
+
+### Themes
+sphinx_rtd_theme
+sphinx_bootstrap_theme
+
+#########################    Others     #########################
+

@@ -1,0 +1,28 @@
+# Start a spider
+./docker/run-container.sh application python crawler start ma_cave_categories
+
+## Start a spider for only one store
+./docker/run-container.sh application python crawler start ma_cave_categories external_store_id=357
+
+# open the shell
+docker-compose run --user="www-data" --rm application scrapy shell "http://www.google.com/"
+
+# Remove all containers
+docker-compose down --rmi=all
+docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)
+
+
+# Command Elasticsearch
+# Remove all index
+DELETE scrapy-*
+
+
+# Build doc
+./docker/run-container.sh application sphinx-build -b html docs/source docs/build
+
+# Start style checker
+./docker/run-container.sh application pylint cli common docs extensions itemloaders items middlewares pipelines scripts spiders test crawler
+
+
+# Clean docker
+docker-clean -s -c -net -l
