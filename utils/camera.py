@@ -1,14 +1,14 @@
 import pygame
 from pygame import Rect
-from settings import *
+
+from utils.settings import *
 
 
 class Camera:
 
-    def __init__(self, camera_width, camera_height, level_width, level_height):
-        self.last_move = None
+    def __init__(self, camera_width, camera_height):
+        self.last_move = (0, 0)
         self.rect = Rect(0, 0, camera_width, camera_height)
-        self.level_size = self.level_width, self.level_height = level_width, level_height
 
     def move_of(self, x, y):
         """
@@ -37,3 +37,5 @@ class Camera:
             x = x - xx
 
         self.move_of(x, y)
+
+        return self.rect.x, self.rect.y
