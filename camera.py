@@ -1,5 +1,6 @@
 import pygame
 from pygame import Rect
+from settings import *
 
 
 class Camera:
@@ -19,7 +20,8 @@ class Camera:
         self.rect = self.rect.move(x, y)
 
     def check_events(self, event_dict):
-        xx = yy = 10
+        yy = TILE_HEIGHT
+        xx = TILE_WIDTH
         x = y = 0
 
         if event_dict.get(pygame.K_UP, 0) > 0:

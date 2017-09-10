@@ -2,12 +2,10 @@ import json
 from pygame import Rect
 from terrain import TerrainGroup, Terrain
 from tilecache import TileCache
+from settings import *
 
 
 class Level:
-    tiles_filename = 'tiles/tiles.json'
-    tile_width = 30
-    tile_height = 30
 
     def __init__(self, width, height, raw_level):
         """
@@ -17,6 +15,9 @@ class Level:
         :param raw_level: [[int, int, ...], [int, int, ...], ...]
         :return Level
         """
+        self.tile_width = TILE_WIDTH
+        self.tile_height = TILE_HEIGHT
+        self.tiles_filename = TILES_FILENAME
         self.width = width
         self.height = height
         self.raw_level = raw_level
@@ -82,16 +83,21 @@ class Level:
 
         return list_tiles
 
-    def add_case(self, pos):
-        """
-
-        :param pos:
-        :return:
-        """
+    def add_case(self, pos, case=0):
         x, y = pos
         x = (x // self.tile_width) * self.tile_width
         y = (y // self.tile_height) * self.tile_height
-        rect = Rect(x, y, self.tile_width, self.tile_height)
-        sprite = Terrain(rect, self.tile_cache.get_image('tiles/plaine.png'))
-        self.terrain_group.add(sprite)
+        if 0 <= x < self.width * self.tile_width and 0 <= y < self.height * self.tile_height:
+            self.add_to_raw_level(pos, case)
+            self.terrain_group = TerrainGroup(self.load_terrain_group())
 
+    def add_to_raw_level(self, pos, case=0):
+        x, y = pos
+        x = x // self.tile_width
+        y = y // self.tile_height
+        self.raw_level[y][x] = case
+
+    def save_level(self):
+        json_level = json.dumps(self.raw_level)
+        with open('maps/level_1.json', 'w') as file:
+            file.write(json_level)

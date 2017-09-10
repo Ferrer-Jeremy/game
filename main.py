@@ -16,7 +16,7 @@ screen = pygame.display.set_mode(screen_size)
 
 clock = pygame.time.Clock()
 
-level = Level.from_json_file('maps/map1.json')
+level = Level.from_json_file('maps/level_1.json')
 terrain = level.terrain_group
 
 camera = Camera(screen_width, screen_height, level.width, level.height)
@@ -30,7 +30,8 @@ while 1:
     exit_program(events)
     camera.check_events(events)
 
-    terrain = level.terrain_group
+    if events.get(pygame.K_e, 0) == 1:
+        level.save_level()
 
     if events.get(event.M_LEFT, 0) == 1:
         pos = pygame.mouse.get_pos()
@@ -39,6 +40,6 @@ while 1:
         level.add_case(pos)
 
     screen.fill((0, 0, 0))
-    terrain.update(camera)
-    terrain.draw(screen)
+    level.terrain_group.update(camera)
+    level.terrain_group.draw(screen)
     pygame.display.update()

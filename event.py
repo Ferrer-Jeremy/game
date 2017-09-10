@@ -45,6 +45,11 @@ def get_events(events):
         if e.type == pygame.KEYUP and (e.key == pygame.K_LEFT or e.key == pygame.K_q):
             events[pygame.K_LEFT] = 0
 
+        if e.type == pygame.KEYDOWN and (e.key == pygame.K_e):
+            events[pygame.K_e] = 1
+        if e.type == pygame.KEYUP and (e.key == pygame.K_e):
+            events[pygame.K_e] = 0
+
         # Mouse
         if e.type == pygame.MOUSEBUTTONDOWN and e.button == M_LEFT:
             events[M_LEFT] = 1
