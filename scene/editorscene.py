@@ -5,7 +5,7 @@ from pygame import Rect
 from utils import TileCache
 
 from layers import TerrainGroup, Terrain
-from scene.eventhandler.editorscene import EditorSceneEventHandler
+from scene.eventhandler import EditorSceneEventHandler
 from utils.settings import *
 
 
