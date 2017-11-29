@@ -1,28 +1,23 @@
-from scene.editorscene import EditorScene
-from scene.playscene import PlayScene
+import inspect
+from abc import ABCMeta, abstractmethod
 
 
-class SceneManager:
-    """
-    Save, Load, Change between scene
-    """
+class Scene(metaclass=ABCMeta):
 
-    def __init__(self):
-        self.current_scene = None
-        self.current_type_scene = None
-
-    def load_scene(self, scene_name, scene_type):
+    @abstractmethod
+    def check_events(self, events):
         """
-        Load a scene from disk
-        :param scene_name: str
-        :param scene_type: str
-        :return: Scene subclass -> EditorScene or ...
+        Check the events to execute actions
+        :param events: dict events containing their duration
         """
-        self.current_scene = scene_name
-        self.current_type_scene = scene_type
-        if scene_type == 'editor_scene':
-            return EditorScene.from_scene_name(scene_name)
+        NotImplementedError("Class {} doesn't implement {}".format(self.__class__.__name__, inspect.currentframe()))
 
-        if scene_type == 'play_scene':
-            return PlayScene.from_scene_name(scene_name)
+    def update_and_draw(self, screen):
+        """
+        Update & draw on the screen all Sprites
+        :param screen: Screen
+        """
+        NotImplementedError("Class {} doesn't implement {}".format(self.__class__.__name__, inspect.currentframe()))
+
+
 

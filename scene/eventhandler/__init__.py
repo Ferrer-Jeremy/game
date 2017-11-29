@@ -1,2 +1,0 @@
-from scene.eventhandler.editorscene import EditorSceneEventHandler
-from scene.eventhandler.playscene import PlaySceneEventHandler

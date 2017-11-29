@@ -19,6 +19,14 @@ class Camera:
         self.last_move = (x, y)
         self.rect = self.rect.move(x, y)
 
+    @property
+    def offset_x(self):
+        return self.rect.x
+
+    @property
+    def offset_y(self):
+        return self.rect.y
+
     def check_events(self, event_dict):
         yy = TILE_HEIGHT
         xx = TILE_WIDTH
@@ -37,5 +45,3 @@ class Camera:
             x = x - xx
 
         self.move_of(x, y)
-
-        return self.rect.x, self.rect.y
