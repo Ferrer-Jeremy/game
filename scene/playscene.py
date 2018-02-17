@@ -1,11 +1,13 @@
-from utils import Camera
+from itertools import cycle
 
+from utils import Camera
 from utils import TileCache
 from scene import Scene
 from layers import TerrainGroup
 from eventhandler.play import PlaySceneEventHandler, PositioningEventHandler
 from utils.settings import *
 from scenemode.play import PositioningMode
+from model.player import Player
 
 
 class PlayScene(Scene):
@@ -21,6 +23,9 @@ class PlayScene(Scene):
         self.tile_cache = TileCache()
         self.camera = Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
         self.terrain_group = TerrainGroup.load(self.level_matrix, self.tile_cache)
+
+        self.players = cycle([Player('player 1'), Player('player 2')])
+        self.player_enabled = next(self.players)
 
         self.positioning_event_handler = PositioningEventHandler()
         self.positioning_scene_mode = PositioningMode()

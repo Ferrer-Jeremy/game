@@ -1,8 +1,8 @@
 [
   {
     "id": 0,
-    "name": "plaine",
-    "image": "tiles/plaine.png"
+    "name": "plain",
+    "image": "tiles/plain.png"
   },
   {
     "id": 1,
@@ -14,7 +14,7 @@
     "name": "fire",
     "image": "tiles/fire.png"
   },
-   {
+  {
     "id": 3,
     "name": "road",
     "image": "tiles/road.png"
